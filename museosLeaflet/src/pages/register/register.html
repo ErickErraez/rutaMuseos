@@ -1,0 +1,67 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Registro de Usuarios</strong> Museos de Quito
+      </h2>
+    </div>
+
+
+    <form class="list-form">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Nombre
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Apellido
+        </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Contraseña
+        </ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Repetir Contraseña
+        </ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      
+    </form>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()">
+        Crear Cuenta
+      </button>
+
+      <div text-center margin-top>
+        <span ion-text color="primary" tappable (click)="login()">Ya tengo una cuenta</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

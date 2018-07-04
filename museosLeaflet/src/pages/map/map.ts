@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
 
-declare const L: any;
+//declare const L: any;
 
 @Component({
   selector: 'page-map',
