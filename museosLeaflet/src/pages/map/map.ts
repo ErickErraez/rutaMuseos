@@ -5,7 +5,6 @@ import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
 
 //declare const L: any;
-
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
@@ -21,6 +20,8 @@ export class MapPage {
 
   ngOnInit(): void {
     this.drawMap();
+    //web location
+    this.map.locate({ setView: true });
   }
 
   drawMap(): void {
@@ -32,9 +33,6 @@ export class MapPage {
 
 
     var map = this.map;
-
-    //web location
-    map.locate({ setView: true });
 
     //when we have a location draw a marker
     function onLocationFound(e) {

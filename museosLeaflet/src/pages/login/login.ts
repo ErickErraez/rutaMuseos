@@ -26,4 +26,7 @@ export class LoginPage {
     registro(){
       this.navCtrl.setRoot(RegisterPage);
     }
+    forgotPass(){
+      alert("ya valiste no hay chanse de recuperar tu contraseña papu");
+    }
 }
