@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 
 import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
@@ -12,45 +13,33 @@ import 'leaflet-draw';
 export class HomePage {
 
   map: any;
-  data: any;
-  estado: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
 
   }
 
   ngOnInit(): void {
 
-    this.drawMap();
-    
-    //web location
-    this.map.locate({ setView: true });
+    this.getLocation();
+
   }
 
-  drawMap(): void {
-    this.map = Leaflet.map('map').setView([-0.1836298, -78.4821206], 18);
-    Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((geposition: Geoposition) => {
+      
+      var x = geposition.coords.latitude;
+      var y = geposition.coords.longitude;
 
-      maxZoom: 18
-    }).addTo(this.map);
+      this.map = Leaflet.map('map').setView([x, y], 18);
+      Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
+        maxZoom: 18
+      }).addTo(this.map);
 
-    var map = this.map;
+      Leaflet.marker([x, y]).addTo(this.map)
+        .bindPopup("Tu Ubicacion").openPopup();
 
-    //when we have a location draw a marker
-    function onLocationFound(e) {
-
-      Leaflet.marker(e.latlng).addTo(map)
-        .bindPopup('Estas Aqui').openPopup();
-    }
-    map.on('locationfound', onLocationFound);
-
-    //alert on location error
-    function onLocationError(e) {
-      alert(e.message);
-    }
-
-    this.map.on('locationerror', onLocationError);
+    })
   }
 
 
