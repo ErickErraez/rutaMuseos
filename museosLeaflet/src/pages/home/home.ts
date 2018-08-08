@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
@@ -25,10 +25,10 @@ export class HomePage {
   }
 
   getLocation() {
-    this.geolocation.getCurrentPosition().then((geposition: Geoposition) => {
+    this.geolocation.getCurrentPosition().then((resp) => {
       
-      var x = geposition.coords.latitude;
-      var y = geposition.coords.longitude;
+      var x = resp.coords.latitude;
+      var y = resp.coords.longitude;
 
       this.map = Leaflet.map('map').setView([x, y], 18);
       Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
