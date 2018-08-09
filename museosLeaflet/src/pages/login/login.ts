@@ -1,8 +1,9 @@
 import { IonicPage, NavParams } from 'ionic-angular';
-import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import { Component } from "@angular/core";
+import { NavController } from "ionic-angular";
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register'
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,15 +19,30 @@ import { RegisterPage } from '../register/register'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  headers: any = new Headers({ 'Content-Type': 'application/json' })
+  options: any = new RequestOptions({ headers: this.headers })
+  url: any = 'http://localhost/Webservice/server/index.php/welcome/getuser'
+
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, ) {
   }
-    login(){
-      this.navCtrl.setRoot(HomePage);
-    }
-    registro(){
-      this.navCtrl.setRoot(RegisterPage);
-    }
-    forgotPass(){
-      alert("ya valiste no hay chanse de recuperar tu contraseña papu");
-    }
+  login() {
+    this.getAll();
+
+  }
+  registro() {
+    this.navCtrl.setRoot(RegisterPage);
+  }
+  forgotPass() {
+    alert("proximamente");
+  }
+
+  getAll(){
+    this.http.get(this.url).subscribe(respuesta => {
+      alert(JSON.stringify(respuesta.json()));
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+  }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
 
@@ -12,10 +13,10 @@ import 'leaflet-draw';
 })
 export class HomePage {
 
+
   map: any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
-
+  constructor( public navCtrl: NavController, public geolocation: Geolocation) {
   }
 
   ngOnInit(): void {
@@ -24,9 +25,10 @@ export class HomePage {
 
   }
 
+
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      
+
       var x = resp.coords.latitude;
       var y = resp.coords.longitude;
 
@@ -43,4 +45,7 @@ export class HomePage {
   }
 
 
+
+
 }
+
