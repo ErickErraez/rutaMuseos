@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FormPage page.
+ * Generated class for the AgregarmuseoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,17 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-form',
-  templateUrl: 'form.html',
+  selector: 'page-agregarmuseo',
+  templateUrl: 'agregarmuseo.html',
 })
-export class FormPage {
-  item;
+export class AgregarmuseoPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.item=navParams.data.item;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FormPage');
+    console.log('ionViewDidLoad AgregarmuseoPage');
   }
 
 }

@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register'
+import * as $ from 'jquery';
 import { Headers, Http, RequestOptions } from '@angular/http';
 
 /**
@@ -22,25 +23,42 @@ export class LoginPage {
   headers: any = new Headers({ 'Content-Type': 'application/json' })
   options: any = new RequestOptions({ headers: this.headers })
   url: any = 'http://localhost/Webservice/server/index.php/welcome/getuser'
+  x: any;
 
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, ) {
+  constructor(public navController: NavController, public navParams: NavParams, private http: Http) {
   }
-  login() {
-    this.getAll();
 
+
+  login() {
+
+    var user = $("#email").val();
+    var pass = $('#password').val();
+
+    var data = { email: user, contrasena: pass };
+
+    this.http.post(this.url, JSON.stringify(data), this.headers)
+      .subscribe(Response => {
+        let respuesta = Response.json();
+        if (respuesta > 0) {
+          alert("Bienvenido");
+          this.navController.setRoot(HomePage);
+        } else {
+          alert('Usuario o contrasea Incorrectos');
+          this.navController.setRoot(LoginPage);
+        }
+      });
   }
   registro() {
-    this.navCtrl.setRoot(RegisterPage);
+    this.navController.setRoot(RegisterPage);
   }
   forgotPass() {
     alert("proximamente");
   }
 
-  getAll(){
+  getAll() {
     this.http.get(this.url).subscribe(respuesta => {
       alert(JSON.stringify(respuesta.json()));
+      console.log(respuesta);
     }, error => {
       alert(JSON.stringify(error));
     });

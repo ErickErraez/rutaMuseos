@@ -7,13 +7,15 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
+import { FormPage } from '../pages/form/form';
+
 import { HttpModule } from '@angular/http';
 
 import { Geolocation } from '@ionic-native/geolocation';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    FormPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule,
-
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,9 +38,11 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    FormPage
   ],
   providers: [
+    LocationAccuracy,
     StatusBar,
     SplashScreen,
     Geolocation,
